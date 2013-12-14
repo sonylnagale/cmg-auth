@@ -1,0 +1,34 @@
+* {
+	font-family: Arial, sans-serif;
+}
+
+form#cmg-form {
+	width: 400px;
+	margin: 20px auto;
+}
+
+.slide {
+	float:left;
+}
+
+#network, #sites, #password, #message {
+	display:none;
+}
+
+.next {
+	margin-top: 20px;
+	background-color: #3c78b5;
+	font: bold 16px Arial, sans-serif;
+	padding: 10px;
+	color: #fff;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	cursor:pointer;
+	text-align:center;
+	border:none;
+}
+
+.sitelevel {
+	padding:5px;
+}
