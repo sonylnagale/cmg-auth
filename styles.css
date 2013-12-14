@@ -27,6 +27,7 @@ form#cmg-form {
 	cursor:pointer;
 	text-align:center;
 	border:none;
+	text-decoration: none;
 }
 
 .sitelevel {

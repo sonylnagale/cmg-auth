@@ -13,6 +13,9 @@ For more information about these settings, see the following documents:
     window.janrain.settings = {};
     window.janrain.settings.capture = {};
 
+    janrain.settings.tokenAction='event';
+
+    
     janrain.settings.packages = ['login', 'capture'];
 
     // --- Engage Widget -------------------------------------------------------
