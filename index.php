@@ -18,7 +18,6 @@ $sites = $executor->getSites();
 	<script type="text/javascript" src="http://www.alpacajs.org/js/alpaca.min.js"></script>
 	<link type="text/css" href="http://www.alpacajs.org/css/alpaca.min.css" rel="stylesheet"/>
 	<link type="text/css" href="styles.css" rel="stylesheet"/>
-	<script src="http://media.fe2.cmgdigital.com/shared/media/2013-12-11-12-58-43/web/common/javascript/core.socialhub.js?version=2013-12-11"></script>
 	<script src="http://media.fe2.cmgdigital.com/shared/media/2013-12-11-12-58-43/web/common/javascript/janrain/lib/janrain.js"></script>
 	<script src="janrain.js"></script>
 	<script src="admin.js"></script>
