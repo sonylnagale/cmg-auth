@@ -1,17 +1,36 @@
 * {
 	font-family: Arial, sans-serif;
 }
+body {
+	padding-top: 20px;
+}
+
+h3 {
+	font-weight: normal;
+}
 
 form#cmg-form {
-	width: 400px;
+	width: 500px;
 	margin: 20px auto;
+}
+
+#loader {
+	margin:100px 0 0 200px;
+	display:none;
+	position:absolute;
+	top:20px;
+	z-index: 10;
+}
+#error, #error2 { 
+	color: #f00;
+	display:none;
 }
 
 .slide {
 	float:left;
 }
 
-#network, #sites, #password, #message {
+#signin, #network, #sites, #password, #message {
 	display:none;
 }
 
@@ -32,4 +51,5 @@ form#cmg-form {
 
 .sitelevel {
 	padding:5px;
+	margin:10px;
 }
