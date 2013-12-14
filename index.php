@@ -20,8 +20,9 @@ $sites = $executor->getSites();
 	<link type="text/css" href="http://www.alpacajs.org/css/alpaca.min.css" rel="stylesheet"/>
 	<link type="text/css" href="styles.css" rel="stylesheet"/>
 	<script src="admin.js"></script>
-	<script src="http://media.cmgdigital.com/shared/media/2013-12-12-13-53-16/web/common/javascript/modules/omniture_utilities.min.js"></script>
-	
+<!-- 	<script type="text/javascript" src="http://media.cmgdigital.com/shared/media/2013-12-12-13-53-16/web/common/javascript/omniture_event.js"></script>  -->
+<!-- 	<script type="text/javascript" src="http://media.cmgdigital.com/shared/media/2013-12-12-13-53-16/web/common/javascript/omniture_core.js"></script>  -->
+	<!--script type="text/javascript" src="http://media.cmgdigital.com/shared/media/2013-12-12-13-53-16/web/common/javascript/modules/omniture_utilities.min.js"-->	
 	<script>
 	var cmg = cmg || {};
 	
@@ -135,8 +136,8 @@ $sites = $executor->getSites();
 		<div class="capture_backgroundColor">
 			<div class="capture_signin">
 				<h2>Sign in with your email</h2>
-				{* #userInformationForm *} {* traditionalSignIn_emailAddress *} {*
-				traditionalSignIn_password *}
+				{* #userInformationForm *} {* traditionalSignIn_emailAddress *} 
+				{* traditionalSignIn_password *}
 				<div class="capture_form_item">
 					{* traditionalSignIn_signInButton *} <a href="#"
 						data-capturescreen="forgotPassword" id="forgotPasswordLink">Forgot
@@ -172,8 +173,8 @@ $sites = $executor->getSites();
 		<div class="capture_backgroundColor">
 			<div class="capture_signin">
 				<h2>Welcome back. Please sign in</h2>
-				{* #userInformationForm *} {* traditionalSignIn_emailAddress *} {*
-				traditionalSignIn_password *}
+				{* #userInformationForm *} {* traditionalSignIn_emailAddress *} 
+				{* traditionalSignIn_password *}
 				<div class="capture_form_item">
 					{* traditionalSignIn_signInButton *} <a href="#"
 						data-capturescreen="forgotPassword" id="forgotPasswordLink">Forgot
@@ -194,22 +195,20 @@ $sites = $executor->getSites();
 		</div>
 		<div class="capture_signup">
 			<h2>Select a display name and password</h2>
-			{* #socialRegistrationForm *} {* socialRegistration_displayName *} {*
-			socialRegistration_emailAddress *} {*
-			traditionalRegistration_password *} {*
-			traditionalRegistration_passwordConfirm *}
+			{* #socialRegistrationForm *} {* socialRegistration_displayName *} 
+			{* socialRegistration_emailAddress *} 
+			{* traditionalRegistration_password *} 
+			{* traditionalRegistration_passwordConfirm *}
 			<h2>Tell us about yourself</h2>
-			{* registration_firstName *} {* registration_lastName *} {*
-			registration_postalZip *} {* registration_birthday *} {*
-			registration_gender *}
+			{* registration_firstName *} {* registration_lastName *} 
+			{* registration_postalZip *} {* registration_birthday *} {* registration_gender *}
 			<div class="capture_form_item">
 				<label>*Indicates Required Field</label>
 			</div>
 			{* agreeToTerms *}
 			<div class="capture_footer">
 				<div class="capture_left">{* backButton *}</div>
-				<div class="capture_right">{* socialRegistration_signInButton
-					*}</div>
+				<div class="capture_right">{* socialRegistration_signInButton *}</div>
 			</div>
 			{* /socialRegistrationForm *}
 		</div>
@@ -224,14 +223,11 @@ $sites = $executor->getSites();
 				Already have an account? <a href="#" data-capturescreen="signIn">Sign
 					In</a>
 			</p>
-			{* #registrationForm *} {* traditionalRegistration_displayName *} {*
-			traditionalRegistration_emailAddress *} {*
-			traditionalRegistration_password *} {*
-			traditionalRegistration_passwordConfirm *}
+			{* #registrationForm *} {* traditionalRegistration_displayName *} {* traditionalRegistration_emailAddress *} {*
+			traditionalRegistration_password *} {* traditionalRegistration_passwordConfirm *}
 			<h2>Tell us about yourself</h2>
-			{* registration_firstName *} {* registration_lastName *} {*
-			registration_postalZip *} {* registration_birthday *} {*
-			registration_gender *}
+			{* registration_firstName *} {* registration_lastName *} {* registration_postalZip *} {* registration_birthday *} 
+			{* registration_gender *}
 			<div class="capture_form_item">
 				<label>*Indicates Required Field</label>
 			</div>
@@ -251,10 +247,9 @@ $sites = $executor->getSites();
 				Already have an account? <a href="#" data-capturescreen="signIn">Sign
 					In</a>
 			</p>
-			{* #registrationFormBlank *} {* registration_firstName *} {*
-			registration_lastName *} {* traditionalRegistration_displayName *} {*
-			traditionalRegistration_emailAddressBlank *} {* registration_birthday
-			*} {* registration_gender *} {* registration_postalZip *} {*
+			{* #registrationFormBlank *} {* registration_firstName *} {* registration_lastName *} {* traditionalRegistration_displayName *} 
+			{* traditionalRegistration_emailAddressBlank *} {* registration_birthday *} {* registration_gender *} {* registration_postalZip *} 
+			{*
 			traditionalRegistration_passwordBlank *} {*
 			traditionalRegistration_passwordConfirmBlank *}
 			<div class="capture_form_item">
@@ -377,5 +372,181 @@ $sites = $executor->getSites();
 			</div>
 		</div>
 	</div>
+	
+<script>    
+    var cx_siteName = "ajc";
+    var cx_rsID = "coxnewspaperdev";
+    var cx_marketpath = "ga: atlanta";
+    var cx_medium = "newspaper";
+
+    var s_account = cx_rsID;
+
+    
+    if (("test" == "prod") &&
+        (!((/www.prod.ajc/.test(window.location.host))
+        || (/m.prod.ajc/.test(window.location.host))))) {
+            if (cx_medium == "radio" || cx_medium == "tv" || cx_medium == "newspaper" ) {
+                s_account = s_account+",coxglobal";
+            }
+        }
+    else {
+        
+        s_account = "coxradiodev,coxnewspaperdev,coxtvdev";
+    }
+//]]></script>
+
+<script type="text/javascript">//<![CDATA[
+    cmg.s_coxnews = {};
+    cmg.s_coxnews.siteName=cx_siteName;
+    cmg.s_coxnews.linkInternalFilters = "javascript:,doubleclick.net,alt.coxnewsweb.com,legacy.com,uclick.com,signin.cmgdigital.com,www.test.ajc.com,outbrain.com";
+    cmg.s_coxnews.server = window.location.host;
+    cmg.s_coxnews.prop13 = cmg.s_coxnews.eVar13 = document.title.replace("| www.test.ajc.com", "");
+
+    var revpathArray = document.getElementsByName("cmg_revpath");
+    var pathNameStr = "";
+    if(revpathArray.length > 0 && revpathArray[0].content !== ""){
+        pathNameStr = revpathArray[0].content;
+    } else {
+        pathNameStr = window.location.pathname.split(/[#?]/)[0];
+        if(pathNameStr === "/"){
+            pathNameStr = "/homepage";
+        }
+    }
+    if(pathNameStr.length > 99){
+        pathNameStr = pathNameStr.substr(0,98) + "/";
+    }
+    cmg.s_coxnews.pageName = cmg.s_coxnews.eVar55 = pathNameStr;
+
+
+    
+    cmg.s_coxnews.prop63 = cmg.s_coxnews.eVar63 = location.protocol + '//' + location.host + location.pathname + location.search;
+
+    
+    if (cmg.s_coxnews.prop13.length == 0) {
+        cmg.s_coxnews.prop13 = cmg.s_coxnews.eVar13 = "no page title available";
+    }
+    cmg.s_coxnews.hier3 = cmg.s_coxnews.channel = cmg.s_coxnews.eVar56 = "no category";
+
+    
+
+    
+    if(cx_medium=="radio" || cx_medium=="tv" || cx_medium=="newspaper") {
+        cmg.s_coxnews.hier1 = cx_marketpath+"|"+cx_medium+"|"+cx_siteName;
+        cmg.s_coxnews.hier2 = cx_medium+"|"+cx_marketpath+"|"+cx_siteName;
+        
+        var search_page_re = new RegExp(cmg.s_coxnews.server+"\/search");
+        var search_match = search_page_re.exec(window.location);
+        if(search_match != null){
+            cmg.s_coxnews.eVar1 = cmg.s_coxnews.getQueryParam('q');
+            if(cx_no_results){
+                cmg.s_coxnews.events = "event13,event14";
+                cmg.s_coxnews.prop46 = "no";
+            } else {
+                cmg.s_coxnews.events = "event13";
+                cmg.s_coxnews.prop46 = "yes";
+            }
+            if(cmg.s_coxnews.getQueryParam("searchType") == "web"){
+                cmg.s_coxnews.eVar45=cmg.s_coxnews.prop45 = "web";
+            } else {
+                cmg.s_coxnews.eVar45=cmg.s_coxnews.prop45 = "site";
+            }
+        }
+        if (cx_medium == "radio") {
+            cmg.s_coxnews.eVar43=cmg.s_coxnews.prop43 = "";
+        }
+        else if (cx_medium == "tv") {
+            cmg.s_coxnews.eVar43=cmg.s_coxnews.prop43 = "tv";
+        }
+        else if (cx_medium == "newspaper") {
+           cmg.s_coxnews.eVar43=cmg.s_coxnews.prop43 = "newspaper";
+        }
+    }
+    
+    
+cmg.s_coxnews.hier3 = "news|education";
+cmg.s_coxnews.list1 = "topics";
+cmg.s_coxnews.prop21 = "ajc";
+cmg.s_coxnews.eVar21 = "ajc";
+cmg.s_coxnews.prop16 = "non-mobile site";
+cmg.s_coxnews.eVar16 = "non-mobile site";
+cmg.s_coxnews.prop22 = "flat pages";
+cmg.s_coxnews.eVar22 = "flat pages";
+cmg.s_coxnews.prop42 = "ajc";
+cmg.s_coxnews.eVar42 = "ajc";
+cmg.s_coxnews.prop14 = "education";
+cmg.s_coxnews.eVar14 = "education";
+cmg.s_coxnews.prop4 = "";
+cmg.s_coxnews.eVar4 = "";
+cmg.s_coxnews.prop5 = "";
+cmg.s_coxnews.eVar5 = "";
+cmg.s_coxnews.prop6 = "";
+cmg.s_coxnews.eVar6 = "";
+cmg.s_coxnews.prop7 = "24";
+cmg.s_coxnews.eVar7 = "24";
+cmg.s_coxnews.prop17 = "";
+cmg.s_coxnews.eVar17 = "";
+cmg.s_coxnews.prop1 = "1057";
+cmg.s_coxnews.eVar12 = "1057";
+cmg.s_coxnews.prop2 = "";
+cmg.s_coxnews.eVar2 = "";
+cmg.s_coxnews.prop3 = "";
+cmg.s_coxnews.eVar3 = "";
+cmg.s_coxnews.pageName = "/re/305/18988/socialhub/";
+cmg.s_coxnews.eVar55 = "/re/305/18988/socialhub/";
+cmg.s_coxnews.channel = "news";
+cmg.s_coxnews.eVar56 = "news";
+
+    
+    if (cmg.site_meta.media_type === 'premium') {
+        if (cmg.site_meta.premium_status === 'premium') {
+            var auth_url = 'http://www.test.ajc.com/profile/janus-auth/';
+            cmg.authorization.check(auth_url, function(json) {
+                if (json.authorized) {
+                    cmg.s_coxnews.eVar52=cmg.s_coxnews.prop52 = "full page";
+                }
+                else {
+                    cmg.s_coxnews.eVar52=cmg.s_coxnews.prop52 = "stubbed";
+                }
+            });
+        }
+    } else {
+        
+        if (cmg.site_meta.premium_status === 'premium') {
+            cmg.s_coxnews.eVar52=cmg.s_coxnews.prop52 = "stubbed";
+        }
+    }
+
+    
+    
+    
+
+    
+    var cookie = cmg.get_cookie ? cmg.get_cookie('ur_metrics') : false;
+    if (cookie) {
+        
+        var cpp = {"prop2": {"start": 25, "length": 50}, "eVar2": {"start": 25, "length": 50}, "eVar12": {"start": 0, "length": 4}, "prop6": {"start": 18, "length": 5}, "prop4": {"start": 8, "length": 5}, "prop5": {"start": 13, "length": 5}, "eVar3": {"start": 4, "length": 4}, "prop7": {"start": 23, "length": 2}, "eVar5": {"start": 13, "length": 5}, "prop1": {"start": 0, "length": 4}, "eVar7": {"start": 23, "length": 2}, "eVar6": {"start": 18, "length": 5}, "eVar4": {"start": 8, "length": 5}, "prop3": {"start": 4, "length": 4}};
+        for (prop in cpp) {
+            cmg.s_coxnews[prop] = cmg.query.trim(cookie.substr(
+                    cpp[prop].start,
+                    cpp[prop].length));
+        }
+    }
+
+    
+    for (key in cmg.s_coxnews) {
+        if (key.match(/prop|eVar|hier/) !== null) {
+            cmg.s_coxnews[key] = cmg.s_coxnews[key].toLowerCase();
+        }
+    }
+
+    cmg.query(document).ready(function () {
+        
+        var s_code = cmg.s_coxnews.t();
+        if (s_code) { cmg.query('#cm_s_code').text(s_code); }
+    });
+//]]></script>
+<script type="text/javascript" src="http://media.test.cmgdigital.com/shared/media/2013-12-13-01-14-09/web/common/javascript/omniture_core.js"></script>
+<!-- requires javascript/omniture_event.js --><script type="text/javascript" src="http://media.test.cmgdigital.com/shared/media/2013-12-13-01-14-09/web/common/javascript/modules/omniture_utilities.min.js"></script>
+
 </body>
 </html>
