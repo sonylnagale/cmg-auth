@@ -4,8 +4,6 @@ require_once('executor.php');
 
 $executor = new Executor();
 
-$domain_id = 308;
-
 $sites = $executor->getSites();
 
 ?>
@@ -61,9 +59,10 @@ $sites = $executor->getSites();
                 janrain.events.onCaptureLoginSuccess.removeHandler();
                 
                 janrain.events.onCaptureLoginSuccess.addHandler(function(result){
-                console.log(result);
                 	janrain.capture.ui.modal.close();
 
+					window.userData = result.userData;
+                	
                   	$("#cmg-form h2").text("Hello, " + result.userData.displayName);
 			       	createUser(result.userData);
 			   	});
@@ -131,7 +130,7 @@ $sites = $executor->getSites();
 				<button class="next">Next</button>
 			</div>
 			<div id="password" class="slide">
-				<h3>Great! Please enter <strong>Network Permission Password</strong></h3>
+				<h3>Great! Please enter the <strong>Network Permission Password</strong></h3>
 				<p id="error2">Sorry, that's not correct. Please try again.</p>
 				
 				<div class="form"></div>
@@ -587,6 +586,24 @@ cmg.s_coxnews.eVar56 = "news";
 //]]></script>
 <script type="text/javascript" src="http://media.test.cmgdigital.com/shared/media/2013-12-13-01-14-09/web/common/javascript/omniture_core.js"></script>
 <!-- requires javascript/omniture_event.js --><script type="text/javascript" src="http://media.test.cmgdigital.com/shared/media/2013-12-13-01-14-09/web/common/javascript/modules/omniture_utilities.min.js"></script>
-
+<script src="http://zor.fyre.co/wjs/v3.0/javascripts/livefyre.js"></script>
+<div id="livefyre-app-cmg-lf-1387068470995"></div>
+<!-- Scripts -->
+<script>
+(function() {
+    fyre.conv.load({
+        network: 'coxnews.fyre.co'
+    }, [{
+        app: 'main',
+        siteId: '347553',
+        articleId: 'cmg-lf-1387068470995',
+        el: 'livefyre-app-cmg-lf-1387068470995',
+        checksum: 'a0fd9b4f8d6dd9b154a2512abf0cc695',
+        collectionMeta: 'eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9.eyJ1cmwiOiAiaHR0cDovL2NtZ2FkbWluLmNsaWVudC1zb2x1dGlvbnMubGl2ZWZ5cmUuY29tLyIsICJ0YWdzIjogW10sICJhcnRpY2xlSWQiOiAiY21nLWxmLTEzODcwNjg0NzA5OTUiLCAidGl0bGUiOiAiQXV0aG9yaXphdGlvbiBDb2xsZWN0aW9uIGZvciBMaXZlZnlyZSBETyBOT1QgVE9VQ0gifQ.dfPLXtQftKGA5KI76ND4oTSL2SazxzCI4YIE_2yizMg'
+    }], function (widget) {
+        // Initialize or Auth
+    });
+}());
+</script>
 </body>
 </html>

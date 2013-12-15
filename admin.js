@@ -13,6 +13,7 @@ function makeAdmin(data) {
 	var password = null;
 		
 	$("#accessForm .form").alpaca({
+		"data":'Ex703b6bw4',
 		"options": {
 			"id":"passwordFieldAccess"
 		},
@@ -30,7 +31,7 @@ function makeAdmin(data) {
 			"password":Base64.encode($("#passwordFieldAccess").val())
 		};
 		
-		$.ajax("authHandler",
+		$.ajax("authHandler.php",
 			{
 				type: "post",
 				success: successHandler,
@@ -70,6 +71,7 @@ function makeAdmin(data) {
 		
 		if (networkAccess != null) {
 			$("#password .form").alpaca({
+				"data": "kFkWv558zx",
 				"options": {
 					"id":"passwordFieldNetwork"
 				},
@@ -95,15 +97,15 @@ function makeAdmin(data) {
 			"password":Base64.encode($("#passwordFieldNetwork").val())
 		};
 		
-		$.ajax("authHandler",
-			{
-				type: "post",
-				success: successHandler2,
-				
-				error: errorHandler2,
-				
-				data: payload
-			});
+		$.ajax("authHandler.php",
+				{
+					type: "post",
+					success: successHandler2,
+					
+					error: errorHandler2,
+					
+					data: payload
+				});
 		
 	});
 	
@@ -125,8 +127,6 @@ function makeAdmin(data) {
 		
 		var payload = {};
 		
-		payload.password = $('#passwordField').val();
-		payload.networkSettings = networkAccess;
 		payload.sites = [];
 		
 		var sitesOptions = $("#sites input:checked");
@@ -141,7 +141,19 @@ function makeAdmin(data) {
 			}
 		});
 		
-		console.log(payload.sites);	
+		
+		for (var site in payload.sites) {
+			$.ajax("createAssociations.php", {
+				type: "post",
+				
+				data: {
+					"user":window.userData.displayName,
+					"type": (payload.sites[site].access == "Moderator") ? "admin" : payload.sites[site].access.toLowerCase(),
+					"site_id":payload.sites[site].id
+				}
+			});
+		}
+
 		
 		$("#message").delay(1000).show("slide");
 	});
@@ -160,6 +172,18 @@ function makeAdmin(data) {
 	var successHandler2 = function(e) {
 		$("#loader").delay(1000).hide();
 		$("#sites").delay(1000).show("slide");
+		$.ajax("createAssociations.php", {
+			type: "post",
+			
+			data: {
+				"user":window.userData.displayName,
+				"type": networkAccess
+			},
+			
+			success: successHandler3,
+			error: errorHandler3
+		});
+
 	};
 	
 	var errorHandler2 = function(e) {
@@ -167,14 +191,28 @@ function makeAdmin(data) {
 		$("#loader").delay(1000).hide();
 		$("#password").delay(1000).show("slide");
 	};
+	
+	var successHandler3 = function(data) {
+		console.log(data);
+	};
+	
+	var errorHandler3 = successHandler3;
 };
 
-function createUser(user) {
-	// var postTo = "http://"+ userData.network + "/api/v3_0/user/" + userData.displayname + "/refresh"
-	$.post( "http://coxnews.fyre.co/api/v3_0/user/" + user.displayName + "/refresh", { lftoken: systemUserToken })
-		.error(function(data) {
-			alert('Sorry, an error occurred');
-		});	
+
+
+function createUser(user) {	
+	
+	$.get( "php/getToken-coxnews.php", {
+			uid: user.uuid,
+			dispname: user.displayName
+		},
+		tokenHandler
+	);
 	$("#signin").hide("slide");
 	$("#network").delay(1000).show("slide");
+};
+
+function tokenHandler(data, textStatus, jqXHR) {
+	fyre.conv.login(data);
 };
