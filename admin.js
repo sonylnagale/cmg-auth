@@ -13,7 +13,6 @@ function makeAdmin(data) {
 	var password = null;
 		
 	$("#accessForm .form").alpaca({
-		"data":'Ex703b6bw4',
 		"options": {
 			"id":"passwordFieldAccess"
 		},
@@ -71,7 +70,6 @@ function makeAdmin(data) {
 		
 		if (networkAccess != null) {
 			$("#password .form").alpaca({
-				"data": "kFkWv558zx",
 				"options": {
 					"id":"passwordFieldNetwork"
 				},
