@@ -191,7 +191,6 @@ function makeAdmin(data) {
 	};
 	
 	var successHandler3 = function(data) {
-		console.log(data);
 	};
 	
 	var errorHandler3 = successHandler3;
