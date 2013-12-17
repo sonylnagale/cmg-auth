@@ -38,12 +38,12 @@ $sites = $executor->getSites();
 
 	cmg.dfp_ad_slots = [];
 
-	cmg.janrain_capture_server = 'https://cmg.janraincapture.com/';
-	cmg.janrain_js_url = 'd16s8pqtk4uodx.cloudfront.net/cmg-dev/load.js';
-	cmg.janrain_app_id = 'u8wz9dtmm99upmpu52bazczfq3';
-	cmg.janrain_federate_server = 'https://cmg.janrainsso.com/';
-	cmg.janrain_client_id = "" || '5cdyk76ckd8j6ux7pc4xyx8szpj28g5b';
-	
+    cmg.janrain_capture_server = 'https://users.cmgdigital.com';
+    cmg.janrain_js_url = 'd16s8pqtk4uodx.cloudfront.net/cmg/load.js';
+    cmg.janrain_app_id = '6z4jnndkpe6dmfx7vdg4c7hkmz';
+	cmg.janrain_federate_server = 'https://sso.cmgdigital.com';
+    cmg.janrain_client_id = "2p69ttf6au9jy2xcyyq3k2srxuwpw7va" || 'qyynzpmgrk4kgx5yg2kfurbnk639qfcf';
+		
 	
 		$(document).ready(function() {
 		
