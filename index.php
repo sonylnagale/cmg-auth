@@ -38,10 +38,10 @@ $sites = $executor->getSites();
 
 	cmg.dfp_ad_slots = [];
 
-	cmg.janrain_capture_server = 'https://cmg.dev.janraincapture.com/';
+	cmg.janrain_capture_server = 'https://cmg.janraincapture.com/';
 	cmg.janrain_js_url = 'd16s8pqtk4uodx.cloudfront.net/cmg-dev/load.js';
 	cmg.janrain_app_id = 'u8wz9dtmm99upmpu52bazczfq3';
-	cmg.janrain_federate_server = 'https://cmg-dev.janrainsso.com/';
+	cmg.janrain_federate_server = 'https://cmg.janrainsso.com/';
 	cmg.janrain_client_id = "" || '5cdyk76ckd8j6ux7pc4xyx8szpj28g5b';
 	
 	
