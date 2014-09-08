@@ -1,85 +1,130 @@
-<?php
-
-require_once('executor.php');
-
-$executor = new Executor();
-
-$sites = $executor->getSites();
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-	<script src="underscore-min.js"></script>
-	<script type="text/javascript" src="http://www.alpacajs.org/js/alpaca.min.js"></script>
-	<link type="text/css" href="http://www.alpacajs.org/css/alpaca.min.css" rel="stylesheet"/>
 	<link type="text/css" href="styles.css" rel="stylesheet"/>
-	<script src="admin.js"></script>
-	<script src="b64.js"></script>
 
-	<script>
-	var cmg = cmg || {};
 	
-	cmg._ = _;
-	cmg.query = jQuery;
-	
-	cmg.mediaurl = 'http://media.fe2.cmgdigital.com/shared/media/2013-12-11-12-58-43/web/common/';
-	cmg.site_meta = {
-		domain : 'www.fe2.ajc.com',
-		media_type : 'newspaper',
-		site_name : 'ajc',
-		premium_status : ''
+	</head>
+	<body>
+	<div id="livefyre"></div>
+<script type="text/javascript">
+function janrainSignOut(){
+	janrain.capture.ui.endCaptureSession();
+}
+(function() {
+
+	  
+	  window.convConfig_0 = {"siteId":"362525","articleId":"4085","collectionMeta":"","checksum":"","el":"livefyre"};
+	window.convConfig_4084 = {"siteId":"362507","articleId":"5","collectionMeta":"","checksum":"","el":"livefyre"};
+
+	window.callback  = function(widget) {
+	 
+			window.changeConv = widget.changeCollection;
 	};
-	var site_domain = 'www.fe2.ajc.com';
-	cmg.ajax_include_url = 'http://www.fe2.ajc.com/common-admin/ajax-include/';
-
-	cmg.dfp_ad_slots = [];
-
-    cmg.janrain_capture_server = 'https://users.cmgdigital.com';
-    cmg.janrain_js_url = 'd16s8pqtk4uodx.cloudfront.net/cmg/load.js';
-    cmg.janrain_app_id = '6z4jnndkpe6dmfx7vdg4c7hkmz';
-	cmg.janrain_federate_server = 'https://sso.cmgdigital.com';
-    cmg.janrain_client_id = "2p69ttf6au9jy2xcyyq3k2srxuwpw7va" || 'qyynzpmgrk4kgx5yg2kfurbnk639qfcf';
 		
+	if (typeof window.janrain !== 'object') window.janrain = {};
+	window.janrain.settings = {};
+	window.janrain.settings.capture = {};
+
+	// capture settings
+	janrain.settings.capture.redirectUri = 'http://cmg.staging.voceconnect.com/wp-admin/admin-ajax.php?action=janrain_capture_redirect_uri';
+	janrain.settings.capture.appId= '6z4jnndkpe6dmfx7vdg4c7hkmz';
+	janrain.settings.capture.clientId = 'dhx8qu4jju5qmu36ye2qsf7kbyk2ccgg';
+	janrain.settings.capture.responseType = 'token';
+	janrain.settings.capture.captureServer = 'https://users.cmgdigital.com';
+	janrain.settings.capture.registerFlow = 'socialRegistration';
+	janrain.settings.packages = ['capture','login'];
+
+	janrain.settings.capture.setProfileCookie = true;
+	janrain.settings.capture.keepProfileCookieAfterLogout = true;
+	janrain.settings.capture.setProfileData = 'true';
+	janrain.settings.capture.federateEnableSafari = true;
+
+	// styles
+	janrain.settings.capture.stylesheets = ['http://cmg.staging.voceconnect.com/wp-content/themes/cmg/janrain-capture-screens/stylesheets/styles.css'];
+	janrain.settings.capture.mobileStylesheets = ['http://cmg.staging.voceconnect.com/wp-content/themes/cmg/janrain-capture-screens/stylesheets/mobile-styles.css'];
+	janrain.settings.capture.recaptchaPublicKey = '6LeVKb4SAAAAAGv-hg5i6gtiOV4XrLuCDsJOnYoP';
+
+	// engage settings
+	janrain.settings.appUrl = 'https://login.cmgdigital.com';
+	janrain.settings.tokenAction = 'event';
+		
+
+	//backplane settings
+	janrain.settings.capture.backplane = 1;
+	janrain.settings.capture.backplaneBusName = 'coxmediagroup.com';
+	janrain.settings.capture.backplaneVersion = 1.2;
+	janrain.settings.capture.backplaneServerBaseUrl = 'https://cmg.janrainbackplane.com';
+				
+
+	// federate settings
+	janrain.settings.capture.federate = 1;
+	janrain.settings.capture.federateServer = 'https://sso.cmgdigital.com';
+	janrain.settings.capture.federateXdReceiver = 'http://cmg.staging.voceconnect.com/wp-content/themes/vip/plugins/janrain-capture/xdcomm.html';
+	janrain.settings.capture.federateLogoutUri = 'http://cmg.staging.voceconnect.com/wp-login.php?loggedout=true';
+		
+	function isReady() { janrain.ready = true; };
+	if (document.addEventListener) {
+		document.addEventListener("DOMContentLoaded", isReady, false);
+	} else {
+		window.attachEvent('onload', isReady);
+	}
+
+	var e = document.createElement('script');
+	e.type = 'text/javascript';
+	e.id = 'janrainAuthWidget'
+	var url = document.location.protocol === 'https:' ? 'https://' : 'http://';
+	url += 'd16s8pqtk4uodx.cloudfront.net/cmg/load.js';
+	e.src = url;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(e, s);
+})();
+</script><script type="text/javascript">function janrainCaptureWidgetOnLoad() {
+
+	var readyFunction = authDelegate = fyre.conv.BackplaneAuthDelegate(window.Backplane);
 	
-		$(document).ready(function() {
-		
-			janrain.init();
-			
-			makeAdmin({"form":"#form", "sites":<?php echo $sites; ?>});
-			
-			$(".cmJanrainOpenModal").click(function(e) {
-				e.preventDefault();	
-                e.stopPropagation();
-                janrain.capture.ui.modal.open('signIn');
-                
-                janrain.events.onCaptureLoginSuccess.removeHandler();
-                
-                janrain.events.onCaptureLoginSuccess.addHandler(function(result){
-                	janrain.capture.ui.modal.close();
 
-					window.userData = result.userData;
-                	
-                  	$("#cmg-form h2").text("Hello, " + result.userData.displayName);
-			       	createUser(result.userData);
-			   	});
-             });
+	 fyre.conv.load(
+		{network: 'jamiedupree.fyre.co'},
+		[window.convConfig_0], 
+	 window.callback
+	);
+
+	janrain.events.onCaptureBackplaneReady.addHandler(function() {
+		janrain.events.onCaptureBackplaneReady.remove(all)		
+
+			janrain.events.onCaptureBackplaneReady.removeHandlers();
+		 
 		});
-	</script>
+
+
 	
-	<script src="http://media.fe2.cmgdigital.com/shared/media/2013-12-11-12-58-43/web/common/javascript/janrain/lib/janrain.js"></script>
-	
-		<script type="text/javascript">
+	janrain.events.onCaptureLoginSuccess.addHandler(function(){
+		/*location.reload(true);*/
+		janrain.capture.ui.modal.close();
+	});
+	janrain.events.onCaptureRegistrationSuccess.addHandler(function(){
+		/*location.reload(true);*/
+		janrain.capture.ui.modal.close();
+	});
+	janrain.capture.ui.start();
+}
+</script><script type="text/javascript" src="http://zor.livefyre.com/wjs/v3.0/javascripts/livefyre.js"></script>	
+
+<script>
 (function() {
     if (typeof window.janrain !== 'object') window.janrain = {};
     if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
     
     janrain.settings.tokenUrl = 'http://www.coxmediagroup.com/';
 
-    function isReady() { janrain.ready = true; };
+    function isReady() { janrain.ready = true; 
+
+
+
+    };
     if (document.addEventListener) {
       document.addEventListener("DOMContentLoaded", isReady, false);
     } else {
@@ -102,51 +147,6 @@ $sites = $executor->getSites();
     
 })();
 </script>
-</head>
-
-<body>
-
-	<form id="cmg-form">
-		<h2>Hello and Welcome!</h2>
-		
-		<div id="loader" class="slide">
-			<img src="ajax-loader.gif" />
-		</div>
-		<div id="accessForm" class="slide">
-			<h3>To get started, please enter the <strong>Access Password</strong><br /> (<em>not</em> your user password
-			but the password provided)</h3>
-			<p id="error">Sorry, that's not correct. Please try again.</p>
-			<div class="form"></div>
-			<button class="next">Continue</button>
-		</div>
-		<div id="form" class="slide">
-			<div id="signin">
-				<h3>Thanks! Now please sign in with your own credentials:</h3>
-				<a  class="next cmJanrainOpenModal">Sign In</a>
-			</div>
-			<div id="network">
-				<h3>What kind of <strong>Network Level</strong> access should you have?</h3>
-				<div class="form"></div>
-				<button class="next">Next</button>
-			</div>
-			<div id="password" class="slide">
-				<h3>Great! Please enter the <strong>Network Permission Password</strong></h3>
-				<p id="error2">Sorry, that's not correct. Please try again.</p>
-				
-				<div class="form"></div>
-				<button class="next">Next</button>
-				
-			</div>
-			<div id="sites" class="slide">
-				<h3>What should be your <strong>Site Level</strong> permissions?</h3>
-				<div class="form"></div>
-				<button class="next">Submit</button>
-			</div>
-			<div id="message" class="slide">
-				<h3>Thanks! Your permissions are in queue to be stored.</h3>
-			</div>
-		</div>
-	</form>
 
 	<div style="display:none;" id="signIn">
     <div class="capture_header">
@@ -434,176 +434,14 @@ $sites = $executor->getSites();
     }
 //]]></script>
 
-<script type="text/javascript">//<![CDATA[
-    cmg.s_coxnews = {};
-    cmg.s_coxnews.siteName=cx_siteName;
-    cmg.s_coxnews.linkInternalFilters = "javascript:,doubleclick.net,alt.coxnewsweb.com,legacy.com,uclick.com,signin.cmgdigital.com,www.test.ajc.com,outbrain.com";
-    cmg.s_coxnews.server = window.location.host;
-    cmg.s_coxnews.prop13 = cmg.s_coxnews.eVar13 = document.title.replace("| www.test.ajc.com", "");
-
-    var revpathArray = document.getElementsByName("cmg_revpath");
-    var pathNameStr = "";
-    if(revpathArray.length > 0 && revpathArray[0].content !== ""){
-        pathNameStr = revpathArray[0].content;
-    } else {
-        pathNameStr = window.location.pathname.split(/[#?]/)[0];
-        if(pathNameStr === "/"){
-            pathNameStr = "/homepage";
-        }
-    }
-    if(pathNameStr.length > 99){
-        pathNameStr = pathNameStr.substr(0,98) + "/";
-    }
-    cmg.s_coxnews.pageName = cmg.s_coxnews.eVar55 = pathNameStr;
 
 
-    
-    cmg.s_coxnews.prop63 = cmg.s_coxnews.eVar63 = location.protocol + '//' + location.host + location.pathname + location.search;
+<a  onclick="window.changeConv(window.convConfig_4084)">Change</div>
 
-    
-    if (cmg.s_coxnews.prop13.length == 0) {
-        cmg.s_coxnews.prop13 = cmg.s_coxnews.eVar13 = "no page title available";
-    }
-    cmg.s_coxnews.hier3 = cmg.s_coxnews.channel = cmg.s_coxnews.eVar56 = "no category";
 
-    
-
-    
-    if(cx_medium=="radio" || cx_medium=="tv" || cx_medium=="newspaper") {
-        cmg.s_coxnews.hier1 = cx_marketpath+"|"+cx_medium+"|"+cx_siteName;
-        cmg.s_coxnews.hier2 = cx_medium+"|"+cx_marketpath+"|"+cx_siteName;
-        
-        var search_page_re = new RegExp(cmg.s_coxnews.server+"\/search");
-        var search_match = search_page_re.exec(window.location);
-        if(search_match != null){
-            cmg.s_coxnews.eVar1 = cmg.s_coxnews.getQueryParam('q');
-            if(cx_no_results){
-                cmg.s_coxnews.events = "event13,event14";
-                cmg.s_coxnews.prop46 = "no";
-            } else {
-                cmg.s_coxnews.events = "event13";
-                cmg.s_coxnews.prop46 = "yes";
-            }
-            if(cmg.s_coxnews.getQueryParam("searchType") == "web"){
-                cmg.s_coxnews.eVar45=cmg.s_coxnews.prop45 = "web";
-            } else {
-                cmg.s_coxnews.eVar45=cmg.s_coxnews.prop45 = "site";
-            }
-        }
-        if (cx_medium == "radio") {
-            cmg.s_coxnews.eVar43=cmg.s_coxnews.prop43 = "";
-        }
-        else if (cx_medium == "tv") {
-            cmg.s_coxnews.eVar43=cmg.s_coxnews.prop43 = "tv";
-        }
-        else if (cx_medium == "newspaper") {
-           cmg.s_coxnews.eVar43=cmg.s_coxnews.prop43 = "newspaper";
-        }
-    }
-    
-    
-cmg.s_coxnews.hier3 = "news|education";
-cmg.s_coxnews.list1 = "topics";
-cmg.s_coxnews.prop21 = "ajc";
-cmg.s_coxnews.eVar21 = "ajc";
-cmg.s_coxnews.prop16 = "non-mobile site";
-cmg.s_coxnews.eVar16 = "non-mobile site";
-cmg.s_coxnews.prop22 = "flat pages";
-cmg.s_coxnews.eVar22 = "flat pages";
-cmg.s_coxnews.prop42 = "ajc";
-cmg.s_coxnews.eVar42 = "ajc";
-cmg.s_coxnews.prop14 = "education";
-cmg.s_coxnews.eVar14 = "education";
-cmg.s_coxnews.prop4 = "";
-cmg.s_coxnews.eVar4 = "";
-cmg.s_coxnews.prop5 = "";
-cmg.s_coxnews.eVar5 = "";
-cmg.s_coxnews.prop6 = "";
-cmg.s_coxnews.eVar6 = "";
-cmg.s_coxnews.prop7 = "24";
-cmg.s_coxnews.eVar7 = "24";
-cmg.s_coxnews.prop17 = "";
-cmg.s_coxnews.eVar17 = "";
-cmg.s_coxnews.prop1 = "1057";
-cmg.s_coxnews.eVar12 = "1057";
-cmg.s_coxnews.prop2 = "";
-cmg.s_coxnews.eVar2 = "";
-cmg.s_coxnews.prop3 = "";
-cmg.s_coxnews.eVar3 = "";
-cmg.s_coxnews.pageName = "/re/305/18988/socialhub/";
-cmg.s_coxnews.eVar55 = "/re/305/18988/socialhub/";
-cmg.s_coxnews.channel = "news";
-cmg.s_coxnews.eVar56 = "news";
-
-    
-    if (cmg.site_meta.media_type === 'premium') {
-        if (cmg.site_meta.premium_status === 'premium') {
-            var auth_url = 'http://www.test.ajc.com/profile/janus-auth/';
-            cmg.authorization.check(auth_url, function(json) {
-                if (json.authorized) {
-                    cmg.s_coxnews.eVar52=cmg.s_coxnews.prop52 = "full page";
-                }
-                else {
-                    cmg.s_coxnews.eVar52=cmg.s_coxnews.prop52 = "stubbed";
-                }
-            });
-        }
-    } else {
-        
-        if (cmg.site_meta.premium_status === 'premium') {
-            cmg.s_coxnews.eVar52=cmg.s_coxnews.prop52 = "stubbed";
-        }
-    }
-
-    
-    
-    
-
-    
-    var cookie = cmg.get_cookie ? cmg.get_cookie('ur_metrics') : false;
-    if (cookie) {
-        
-        var cpp = {"prop2": {"start": 25, "length": 50}, "eVar2": {"start": 25, "length": 50}, "eVar12": {"start": 0, "length": 4}, "prop6": {"start": 18, "length": 5}, "prop4": {"start": 8, "length": 5}, "prop5": {"start": 13, "length": 5}, "eVar3": {"start": 4, "length": 4}, "prop7": {"start": 23, "length": 2}, "eVar5": {"start": 13, "length": 5}, "prop1": {"start": 0, "length": 4}, "eVar7": {"start": 23, "length": 2}, "eVar6": {"start": 18, "length": 5}, "eVar4": {"start": 8, "length": 5}, "prop3": {"start": 4, "length": 4}};
-        for (prop in cpp) {
-            cmg.s_coxnews[prop] = cmg.query.trim(cookie.substr(
-                    cpp[prop].start,
-                    cpp[prop].length));
-        }
-    }
-
-    
-    for (key in cmg.s_coxnews) {
-        if (key.match(/prop|eVar|hier/) !== null) {
-            cmg.s_coxnews[key] = cmg.s_coxnews[key].toLowerCase();
-        }
-    }
-
-    cmg.query(document).ready(function () {
-        
-        var s_code = cmg.s_coxnews.t();
-        if (s_code) { cmg.query('#cm_s_code').text(s_code); }
-    });
-//]]></script>
-<script type="text/javascript" src="http://media.test.cmgdigital.com/shared/media/2013-12-13-01-14-09/web/common/javascript/omniture_core.js"></script>
-<!-- requires javascript/omniture_event.js --><script type="text/javascript" src="http://media.test.cmgdigital.com/shared/media/2013-12-13-01-14-09/web/common/javascript/modules/omniture_utilities.min.js"></script>
-<script src="http://zor.fyre.co/wjs/v3.0/javascripts/livefyre.js"></script>
-<div id="livefyre-app-cmg-lf-1387068470995"></div>
-<!-- Scripts -->
 <script>
-(function() {
-    fyre.conv.load({
-        network: 'coxnews.fyre.co'
-    }, [{
-        app: 'main',
-        siteId: '347553',
-        articleId: 'cmg-lf-1387068470995',
-        el: 'livefyre-app-cmg-lf-1387068470995',
-        checksum: 'a0fd9b4f8d6dd9b154a2512abf0cc695',
-        collectionMeta: 'eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9.eyJ1cmwiOiAiaHR0cDovL2NtZ2FkbWluLmNsaWVudC1zb2x1dGlvbnMubGl2ZWZ5cmUuY29tLyIsICJ0YWdzIjogW10sICJhcnRpY2xlSWQiOiAiY21nLWxmLTEzODcwNjg0NzA5OTUiLCAidGl0bGUiOiAiQXV0aG9yaXphdGlvbiBDb2xsZWN0aW9uIGZvciBMaXZlZnlyZSBETyBOT1QgVE9VQ0gifQ.dfPLXtQftKGA5KI76ND4oTSL2SazxzCI4YIE_2yizMg'
-    }], function (widget) {
-        // Initialize or Auth
-    });
-}());
+
+</script>
 </script>
 </body>
 </html>
