@@ -26,7 +26,7 @@ $sites = $executor->getSites();
 	cmg._ = _;
 	cmg.query = jQuery;
 	
-	cmg.mediaurl = 'http://media.fe2.cmgdigital.com/shared/media/2013-12-11-12-58-43/web/common/';
+	cmg.mediaurl = 'http://media.cmgdigital.com/shared/media/2014-10-07-12-10-54/web/common/';
 	cmg.site_meta = {
 		domain : 'www.fe2.ajc.com',
 		media_type : 'newspaper',
@@ -70,7 +70,7 @@ $sites = $executor->getSites();
 		});
 	</script>
 	
-	<script src="http://media.fe2.cmgdigital.com/shared/media/2013-12-11-12-58-43/web/common/javascript/janrain/lib/janrain.js"></script>
+	<script src="http://media.cmgdigital.com/shared/media/2014-10-07-12-10-54/web/common/javascript/janrain/lib/janrain.js"></script>
 	
 		<script type="text/javascript">
 (function() {
@@ -584,8 +584,8 @@ cmg.s_coxnews.eVar56 = "news";
         if (s_code) { cmg.query('#cm_s_code').text(s_code); }
     });
 //]]></script>
-<script type="text/javascript" src="http://media.test.cmgdigital.com/shared/media/2013-12-13-01-14-09/web/common/javascript/omniture_core.js"></script>
-<!-- requires javascript/omniture_event.js --><script type="text/javascript" src="http://media.test.cmgdigital.com/shared/media/2013-12-13-01-14-09/web/common/javascript/modules/omniture_utilities.min.js"></script>
+<script type="text/javascript" src="http://media.cmgdigital.com/shared/media/2014-10-07-12-10-54/web/common/javascript/omniture_core.js"></script>
+<!-- requires javascript/omniture_event.js --><script type="text/javascript" src="http://media.cmgdigital.com/shared/media/2014-10-07-12-10-54/bower_libs/omniture_utilities/omniture_utilities.min.js"></script>
 <script src="http://zor.fyre.co/wjs/v3.0/javascripts/livefyre.js"></script>
 <div id="livefyre-app-cmg-lf-1387068470995"></div>
 <!-- Scripts -->
